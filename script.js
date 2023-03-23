@@ -8,7 +8,8 @@ function generatePassword() {
   var userLength = window.prompt("How long would you like your password to be?(Must be 8-128 characters)")
 
   //If user's input length is not between 8-128 characters, end function
-  if (!(8 < userLength < 129)) {
+  if (userLength < 8 || userLength > 128) {
+    window.alert("Password needs to be between 8-128 characters")
     return 
   }
 
@@ -35,8 +36,32 @@ function generatePassword() {
     return
   }
 
+  //create new array with all specifications user wants
+  if (userLowerCase) {
+    var userSpecs = lowerCase
+  }
+
+  if (userUpperCase) {
+    userSpecs = userSpecs.concat(upperCase) 
+  } 
+
+  if (userNumber) {
+    userSpecs = userSpecs.concat(numArray)
+  }
+
+  if (userSpecial) {
+    userSpecs = userSpecs.concat(specialCharacter)
+  }
+
+  var randomPassword = []
   //generate random password with user specifications
-  
+  for (var i = 0; i < userLength; i++) {
+    randomPassword.push(userSpecs[Math.floor(Math.random()*userSpecs.length)])
+    
+  }
+  randomPassword = randomPassword.join("")
+  console.log(randomPassword)
+  return randomPassword
 }
 
 
