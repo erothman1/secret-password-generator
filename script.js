@@ -1,9 +1,13 @@
+//Arrays for lowercase, uppercase, numbers, and special characters
 lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 numArray= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 specialCharacter = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "_", "=", "{", "}", "[", "]", "|", "\\", "/", ":", ";", '"', "'", "<", ">", ",", ".", "?"]
 
+
+//Code runs when Generate Password button is clicked
 function generatePassword() {
+
   // Ask user for password length
   var userLength = window.prompt("How long would you like your password to be?(Must be 8-128 characters)")
 
@@ -36,10 +40,12 @@ function generatePassword() {
     return
   }
 
-  //create new array with all specifications user wants
+  //Create new array with all specifications user wants
+  var userSpecs = []
+
   if (userLowerCase) {
-    var userSpecs = lowerCase
-  }
+    userSpecs = lowerCase
+  } 
 
   if (userUpperCase) {
     userSpecs = userSpecs.concat(upperCase) 
@@ -53,15 +59,21 @@ function generatePassword() {
     userSpecs = userSpecs.concat(specialCharacter)
   }
 
+  //Generate random password with user specifications
   var randomPassword = []
-  //generate random password with user specifications
+
   for (var i = 0; i < userLength; i++) {
     randomPassword.push(userSpecs[Math.floor(Math.random()*userSpecs.length)])
-    
+    //figure out how to ensure that each user specification is used when randomly generated
   }
+
+  //Turn randomPassword array into string
   randomPassword = randomPassword.join("")
+  
+  //Spit out randomPassword
   console.log(randomPassword)
   return randomPassword
+
 }
 
 
