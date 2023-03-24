@@ -69,11 +69,11 @@ function generatePassword() {
   //Generate random password with user specifications
   var randomPassword = []
 
-  for (var i = 0; i < userLength - random.length; i++) {
+  for (var i = 0; i < (userLength - random.length); i++) {
     randomPassword.push(userSpecs[Math.floor(Math.random()*userSpecs.length)])
   }
 
-  //Add array with one of each user specification to randomly generated password array
+  //Add the array with one of each user specification to randomly generated password array
   randomPassword = randomPassword.concat(random)
 
   //Turn randomPassword array into string
