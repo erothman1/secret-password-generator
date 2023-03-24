@@ -43,29 +43,38 @@ function generatePassword() {
   //Create new array with all specifications user wants
   var userSpecs = []
 
+  //Create array that contains one of each user specification
+  var random = []
+
   if (userLowerCase) {
     userSpecs = lowerCase
+    random.push(lowerCase[Math.floor(Math.random()*lowerCase.length)])
   } 
 
   if (userUpperCase) {
     userSpecs = userSpecs.concat(upperCase) 
+    random.push(upperCase[Math.floor(Math.random()*upperCase.length)])
   } 
 
   if (userNumber) {
     userSpecs = userSpecs.concat(numArray)
+    random.push(numArray[Math.floor(Math.random()*numArray.length)])
   }
 
   if (userSpecial) {
     userSpecs = userSpecs.concat(specialCharacter)
+    random.push(specialCharacter[Math.floor(Math.random()*specialCharacter.length)])
   }
 
   //Generate random password with user specifications
   var randomPassword = []
 
-  for (var i = 0; i < userLength; i++) {
+  for (var i = 0; i < userLength - random.length; i++) {
     randomPassword.push(userSpecs[Math.floor(Math.random()*userSpecs.length)])
-    //figure out how to ensure that each user specification is used when randomly generated
   }
+
+  //Add array with one of each user specification to randomly generated password array
+  randomPassword = randomPassword.concat(random)
 
   //Turn randomPassword array into string
   randomPassword = randomPassword.join("")
